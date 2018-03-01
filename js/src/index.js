@@ -23,6 +23,8 @@ class Note {
     // HINT🤩
     // localStorage only supports strings, not arrays
     // if you want to store arrays, look at JSON.parse and JSON.stringify
+      
+    localStorage.setItem("note", this.title);
   }
   
   remove(){
@@ -38,9 +40,10 @@ class App {
   
     // HINT🤩
     // clicking the button should work
-    // pressing the enter key should also work
     this.btnAdd = document.getElementById("btnAddNote");
     this.btnAdd.addEventListener("click", this.createNote.bind(this));
+    // pressing the enter key should also work
+      
     // this.loadNotesFromStorage();
   }
   
@@ -55,7 +58,7 @@ class App {
     let noteText = document.getElementById("txtAddNote").value;
     let note = new Note(noteText);
     note.add();
-    // note.saveToStorage();
+    note.saveToStorage();
     this.reset();
   }
   
