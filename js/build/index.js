@@ -9,13 +9,14 @@ var Note = function () {
     _classCallCheck(this, Note);
 
     this.title = title;
-    // HINT🤩 this.element = this.createElement(title);
+    this.element = this.createElement(title);
   }
 
   _createClass(Note, [{
     key: "createElement",
     value: function createElement(title) {
       var newNote = document.createElement('div');
+      newNote.innerHTML = title;
 
       // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
 
@@ -26,6 +27,7 @@ var Note = function () {
     value: function add() {
       // HINT🤩
       // this function should append the note to the screen somehow
+      document.querySelector(".notes").appendChild(this.element);
     }
   }, {
     key: "saveToStorage",
@@ -54,8 +56,8 @@ var App = function () {
     // HINT🤩
     // clicking the button should work
     // pressing the enter key should also work
-    // this.btnAdd = ???
-    // this.btnAdd.addEventListener("click", this.createNote.bind(this));
+    this.btnAdd = document.getElementById("btnAddNote");
+    this.btnAdd.addEventListener("click", this.createNote.bind(this));
     // this.loadNotesFromStorage();
   }
 
@@ -70,16 +72,17 @@ var App = function () {
     key: "createNote",
     value: function createNote(e) {
       // this function should create a new note by using the Note() class
-
-      // HINT🤩
-      // note.add();
+      var noteText = document.getElementById("txtAddNote").value;
+      var note = new Note(noteText);
+      note.add();
       // note.saveToStorage();
-      // this.reset();
+      this.reset();
     }
   }, {
     key: "reset",
     value: function reset() {
-      // this function should reset the form 
+      // this function should reset the form
+      document.getElementById("txtAddNote").value = "";
     }
   }]);
 

@@ -1,11 +1,12 @@
 class Note {
   constructor(title) {
     this.title = title;
-    // HINT🤩 this.element = this.createElement(title);
+    this.element = this.createElement(title);
   }
   
   createElement(title){
     let newNote = document.createElement('div');
+    newNote.innerHTML = title;
     
     // HINT🤩 a.addEventListener('click', this.remove.bind(newNote));
     
@@ -15,6 +16,7 @@ class Note {
   add(){
     // HINT🤩
     // this function should append the note to the screen somehow
+    document.querySelector(".notes").appendChild(this.element);
   }
   
   saveToStorage(){
@@ -32,12 +34,13 @@ class Note {
 class App {
   constructor() {
     console.log("👊🏼 The Constructor!");
+    
   
     // HINT🤩
     // clicking the button should work
     // pressing the enter key should also work
-    // this.btnAdd = ???
-    // this.btnAdd.addEventListener("click", this.createNote.bind(this));
+    this.btnAdd = document.getElementById("btnAddNote");
+    this.btnAdd.addEventListener("click", this.createNote.bind(this));
     // this.loadNotesFromStorage();
   }
   
@@ -49,15 +52,16 @@ class App {
    
   createNote(e){
     // this function should create a new note by using the Note() class
-    
-    // HINT🤩
-    // note.add();
+    let noteText = document.getElementById("txtAddNote").value;
+    let note = new Note(noteText);
+    note.add();
     // note.saveToStorage();
-    // this.reset();
+    this.reset();
   }
   
   reset(){
-    // this function should reset the form 
+    // this function should reset the form
+    document.getElementById("txtAddNote").value = "";
   }
   
 }
